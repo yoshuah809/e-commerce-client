@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Product } from "./product";
+import Catalog from "../../features/catalog/Catalog";
+import { Product } from "../models/product";
 
 function App() {
 	const [products, setProducts] = useState<Product[]>([]);
@@ -26,15 +27,7 @@ function App() {
 	return (
 		<div className="container py-3">
 			<h1 style={{ color: "blue" }}> Re-Store</h1>
-			<button onClick={addProducts}>Add Product</button>
-			<ul>
-				{products.map((p) => (
-					<li key={p.name}>
-						{" "}
-						<b>Name: </b> {p.name} Price: {p.price} {p.description}{" "}
-					</li>
-				))}
-			</ul>
+			<Catalog products={products} addProduct={addProducts} />
 		</div>
 	);
 }
