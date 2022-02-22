@@ -1,23 +1,32 @@
-import { Button } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Product } from "../../app/models/product";
 import { ProductList } from "./ProductList";
 
-interface Props {
-	products: Product[];
-	addProduct: () => void;
-}
+export default function Catalog() {
+	const [products, setProducts] = useState<Product[]>([]);
 
-export default function Catalog({ products, addProduct }: Props) {
+	useEffect(() => {
+		fetch("http://localhost:5000/api/products")
+			.then((response) => response.json())
+			.then((data) => setProducts(data));
+	}, []);
+
+	function addProducts() {
+		setProducts((prevState) => [
+			...prevState,
+			{
+				id: prevState.length + 101,
+				name: "Product" + (prevState.length + 1),
+				price: prevState.length * 15,
+				brand: "Some Brand",
+				description: "some description",
+				pictureUrl: "http://picsum.photos/200",
+			},
+		]);
+	}
+
 	return (
 		<>
-			<Button variant="contained" onClick={addProduct}>
-				Add Product
-			</Button>
-			<br />
-			<br />
-			<br />
-
 			<ProductList products={products} />
 		</>
 	);

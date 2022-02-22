@@ -34,7 +34,7 @@ export const ProductCard = ({ product }: Props) => {
 				sx={{
 					height: 140,
 					backgroundSize: "contain",
-					bgcolor: "text.disabled",
+					bgcolor: "primary.main",
 				}}
 				image={product.pictureUrl}
 				title={product.name}
