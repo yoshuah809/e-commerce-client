@@ -7,9 +7,9 @@ import {
 	TableRow,
 	TableCell,
 } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 
 const ProductDetails = () => {
@@ -18,8 +18,8 @@ const ProductDetails = () => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		axios("http://localhost:5000/api/products/" + id)
-			.then((response) => setProduct(response.data))
+		agent.Catalog.details(parseInt(id))
+			.then((response) => setProduct(response))
 			.catch((error) => console.log(error))
 			.finally(() => setLoading(false));
 	}, [id]);
