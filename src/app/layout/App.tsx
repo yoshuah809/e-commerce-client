@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Container, createTheme, CssBaseline } from "@mui/material";
 import { useState } from "react";
 import { Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import AboutPage from "../../features/about/About";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
@@ -29,6 +30,11 @@ function App() {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
+				<ToastContainer
+					position="bottom-right"
+					hideProgressBar
+					theme="colored"
+				/>
 				<CssBaseline />
 				<Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
 				<Container>
